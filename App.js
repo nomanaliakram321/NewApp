@@ -13,6 +13,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Signup from './screens/SignUpScreen';
 import SplashScreen from './screens/SplashScreen';
+import Login from './screens/SignInScreen';
+import HomeScreen from './screens/HomeScreen';
 const Stack = createNativeStackNavigator();
 
 function MyStack() {
@@ -41,7 +43,7 @@ function MyStack() {
         options={{ title: 'Signup',headerShown: false }}
       />     
 
-      {/* <Stack.Screen 
+     <Stack.Screen 
         name="Login" 
         component={Login} 
         options={
@@ -49,14 +51,15 @@ function MyStack() {
           {headerLeft: null} 
         }
       />
+        
       <Stack.Screen 
-       name="Dashboard" 
-       component={Dashboard} 
+       name="HomeScreen" 
+       component={HomeScreen} 
        options={
-         { title: 'Dashboard' },
+         { title: 'HomeScreen' },
          {headerLeft: null} 
        }
-      /> */}
+      />
     </Stack.Navigator>
   );
 }

@@ -9,7 +9,8 @@ export default class Signup extends Component {
         displayName: '',
         email: '', 
         password: '',
-        isLoading: false
+        isLoading: false,
+        photoURL:''
       }
     }
   
@@ -30,14 +31,16 @@ export default class Signup extends Component {
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((res) => {
           res.user.updateProfile({
-            displayName: this.state.displayName
+            displayName: this.state.displayName,
+            photoURL:'photoURL........'
           })
           console.log('User registered successfully!')
           this.setState({
             isLoading: false,
             displayName: '',
             email: '', 
-            password: ''
+            password: '',
+            photoURL:''
           })
           this.props.navigation.navigate('Login')
         })
