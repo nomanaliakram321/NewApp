@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import { storeUserData } from '../utils/AsyncStorage';
 
 
 export default class Login extends Component {
@@ -10,7 +11,8 @@ export default class Login extends Component {
     this.state = { 
       email: '', 
       password: '',
-      isLoading: false
+      isLoading: false,
+      userData: {}
     }
   }
 
@@ -31,14 +33,14 @@ export default class Login extends Component {
       auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((res) => {
-        console.log(res)
-        console.log('User logged-in successfully!')
+        storeUserData( JSON.stringify( res.user) );        
+     
         this.setState({
           isLoading: false,
           email: '', 
           password: ''
         })
-        this.props.navigation.navigate('HomeScreen')
+        this.props.navigation.replace('HomeScreen')
       })
       .catch(error => this.setState({ errorMessage: error.message }))
     }

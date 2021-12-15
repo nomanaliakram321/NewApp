@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import { getUserData, removeUserData } from '../utils/AsyncStorage';
 
 export default class HomeScreen extends Component {
   constructor() {
@@ -11,10 +12,15 @@ export default class HomeScreen extends Component {
       uid: ''
     }
   }
-
+componentDidMount()
+{
+ 
+ 
+}
   signOut = () => {
     auth().signOut().then(() => {
-      this.props.navigation.navigate('Login')
+      this.props.navigation.replace('Login');
+      removeUserData();
     })
     .catch(error => this.setState({ errorMessage: error.message }))
   }  
